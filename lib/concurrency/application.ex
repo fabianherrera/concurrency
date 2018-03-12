@@ -9,7 +9,7 @@ defmodule Concurrency.Application do
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: Concurrency.Worker.start_link(arg)
-      # {Concurrency.Worker, arg},
+      # {Concurrency.Calculator, []},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

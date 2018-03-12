@@ -4,17 +4,13 @@ defmodule Concurrency.Calculator do
   @moduledoc false
 
   # use Application
-@doc """
-Substraction function for CurrencyCalculator, it subs a number to a initial value, handled by ConcurrencyCalculator.loop
-"""
-  def sub(_type, _args) do
+  @doc """
+  Substraction function for CurrencyCalculator, it subs a number to a initial value, handled by ConcurrencyCalculator.loop
+  """
+  def sub(current_value, value), do: current_value - value
 
-  end
   @doc """
   Add function for CurrencyCalculator, it adds a number to a initial value, handled by ConcurrencyCalculator.loop
   """
-  def add(_type, _args) do
-
-  end
-
+  def add(current_value, value), do: current_value + value
 end
