@@ -7,9 +7,9 @@ defmodule CalculatorServer do
   alias Concurrency.Calculator, as: Cal
   alias Concurrency.ServerProcess, as: Gserver
 
-  def start, do: Gserver.start(CalculatorServer)
+  def start(), do: Gserver.start(CalculatorServer)
 
-  def init(initial_number), do: {:ok, initial_number}
+  def init(), do: {:ok, 0}
 
 
   def handle_call(:get_value, state), do: {state, state}
