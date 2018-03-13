@@ -1,8 +1,8 @@
-defmodule Concurrency.ConcurrencyTest do
+defmodule Concurrency.CalculaterServerTest do
   use ExUnit.Case
-  # doctest Concurrency.CalculatorConcurrency
-  # 
-  # @module Concurrency.CalculatorConcurrency
+  # doctest Concurrency.CalculatorServer
+  #
+  # @module Concurrency.CalculatorServer
   #
   # test "adding a value to current state via add function" do
   #   pid = @module.start()
