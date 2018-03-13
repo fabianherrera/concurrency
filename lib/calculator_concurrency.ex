@@ -4,10 +4,14 @@
 # es ridículo en este caso pero estamos simulando un caso de negocio real
 
 defmodule Concurrency.CalculatorConcurrency do
-  def start, do: spawn(fn -> loop(0) end)
-  alias Concurrency.Calculator, as: Cal # Encapsular toda la lógica de negocio en un módulo externo
+  @spec value(pid :: pid) :: integer()
 
-  #Resumen:
+  # Servidor
+  def start, do: spawn(fn -> loop(0) end)
+  # Encapsular toda la lógica de negocio en un módulo externo
+  alias Concurrency.Calculator, as: Cal
+
+  # Resumen:
   # llamar pid a los process_id
   def value(pid) do
     send(pid, {:get_value, self()})
@@ -26,10 +30,17 @@ defmodule Concurrency.CalculatorConcurrency do
       receive do
         {:get_value, client_id} ->
           # devolver el valor del current_state en el query
-          send(client_id, {:ok, current_state}) # aquí no estás devolviéndole el state a new_state, le estás devolviendo un pid
-          current_state # aquí lo devuelves <---- aquí
-        {:add, value} -> Cal.add(current_state, value) # aquí se supone que llamas a la calculadora
-        {:sub, value} -> Cal.sub(current_state, value)
+          # aquí no estás devolviéndole el state a new_state, le estás devolviendo un pid
+          send(client_id, {:ok, current_state})
+          # aquí lo devuelves <---- aquí
+          current_state
+
+        # aquí se supone que llamas a la calculadora
+        {:add, value} ->
+          Cal.add(current_state, value)
+
+        {:sub, value} ->
+          Cal.sub(current_state, value)
       end
 
     loop(new_state)
